@@ -1,0 +1,70 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "jdubyadatafactory"
+		},
+		"al_sqldb_nypayroll_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'al_sqldb_nypayroll'"
+		},
+		"ls_AzureDataLakeStorageGen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_AzureDataLakeStorageGen2'"
+		},
+		"ls_AzureSynapseAnalytics_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_AzureSynapseAnalytics'"
+		},
+		"ls_AzureDataLakeStorageGen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsnycpayrolljohnw.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "jdubyadatafactory_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"al_sqldb_nypayroll_connectionString": {
+						"value": "[parameters('al_sqldb_nypayroll_connectionString')]"
+					},
+					"ls_AzureDataLakeStorageGen2_accountKey": {
+						"value": "[parameters('ls_AzureDataLakeStorageGen2_accountKey')]"
+					},
+					"ls_AzureSynapseAnalytics_connectionString": {
+						"value": "[parameters('ls_AzureSynapseAnalytics_connectionString')]"
+					},
+					"ls_AzureDataLakeStorageGen2_properties_typeProperties_url": {
+						"value": "[parameters('ls_AzureDataLakeStorageGen2_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
