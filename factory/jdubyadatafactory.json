@@ -1,0 +1,9 @@
+{
+	"name": "jdubyadatafactory",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ab703227-d9ab-4baf-9b19-cc309bc21fd1",
+		"tenantId": "f958e84a-92b8-439f-a62d-4f45996b6d07"
+	}
+}
