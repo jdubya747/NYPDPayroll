@@ -1,5 +1,5 @@
 {
-	"name": "df_source2sink_payroll_data",
+	"name": "df_source2sink_2021_payroll_data",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "ds_synapse_analytics_payroll_data",
+						"referenceName": "ds_synapse_analytics_2021_payroll_data",
 						"type": "DatasetReference"
 					},
 					"name": "sinksql2021payrolltable"

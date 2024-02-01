@@ -1,5 +1,5 @@
 {
-	"name": "ds_sql_2020_nyc_payroll_data",
+	"name": "ds_sql_2020_payroll_data",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Ls_SqlDB_2021_Data",
