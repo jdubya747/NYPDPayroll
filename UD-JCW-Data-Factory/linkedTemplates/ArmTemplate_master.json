@@ -7,13 +7,13 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "UD-JCW-Data-Factory"
 		},
-		"ls_ADLS_Data_Files_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'ls_ADLS_Data_Files'"
-		},
 		"Ls_SqlDB_2021_Data_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Ls_SqlDB_2021_Data'"
+		},
+		"ls_ADLS_Data_Files_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_ADLS_Data_Files'"
 		},
 		"ls_SynapseAnalytics_connectionString": {
 			"type": "secureString",
@@ -50,11 +50,11 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"ls_ADLS_Data_Files_accountKey": {
-						"value": "[parameters('ls_ADLS_Data_Files_accountKey')]"
-					},
 					"Ls_SqlDB_2021_Data_connectionString": {
 						"value": "[parameters('Ls_SqlDB_2021_Data_connectionString')]"
+					},
+					"ls_ADLS_Data_Files_accountKey": {
+						"value": "[parameters('ls_ADLS_Data_Files_accountKey')]"
 					},
 					"ls_SynapseAnalytics_connectionString": {
 						"value": "[parameters('ls_SynapseAnalytics_connectionString')]"

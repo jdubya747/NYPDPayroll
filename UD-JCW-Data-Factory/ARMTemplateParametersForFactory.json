@@ -5,10 +5,10 @@
 		"factoryName": {
 			"value": "UD-JCW-Data-Factory"
 		},
-		"ls_ADLS_Data_Files_accountKey": {
+		"Ls_SqlDB_2021_Data_connectionString": {
 			"value": ""
 		},
-		"Ls_SqlDB_2021_Data_connectionString": {
+		"ls_ADLS_Data_Files_accountKey": {
 			"value": ""
 		},
 		"ls_SynapseAnalytics_connectionString": {
