@@ -7,6 +7,22 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "UD-JCW-Data-Factory"
 		},
+		"ls_ADLS_Data_Files_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_ADLS_Data_Files'"
+		},
+		"Ls_SqlDB_2021_Data_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Ls_SqlDB_2021_Data'"
+		},
+		"ls_SynapseAnalytics_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_SynapseAnalytics'"
+		},
+		"ls_ADLS_Data_Files_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsnycpayrolljohncw.dfs.core.windows.net/"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -33,6 +49,18 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"ls_ADLS_Data_Files_accountKey": {
+						"value": "[parameters('ls_ADLS_Data_Files_accountKey')]"
+					},
+					"Ls_SqlDB_2021_Data_connectionString": {
+						"value": "[parameters('Ls_SqlDB_2021_Data_connectionString')]"
+					},
+					"ls_SynapseAnalytics_connectionString": {
+						"value": "[parameters('ls_SynapseAnalytics_connectionString')]"
+					},
+					"ls_ADLS_Data_Files_properties_typeProperties_url": {
+						"value": "[parameters('ls_ADLS_Data_Files_properties_typeProperties_url')]"
 					}
 				}
 			},
