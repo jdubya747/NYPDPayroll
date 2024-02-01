@@ -140,7 +140,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_2021_paroll')]",
+			"name": "[concat(parameters('factoryName'), '/ds_2021_payroll')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -246,7 +246,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_Emp_Master')]",
+			"name": "[concat(parameters('factoryName'), '/ds_emp_master')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -288,7 +288,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_Title_Master')]",
+			"name": "[concat(parameters('factoryName'), '/ds_title_master')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
