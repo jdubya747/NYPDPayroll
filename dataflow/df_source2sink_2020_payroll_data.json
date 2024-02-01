@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "df_source2sink_2020_payroll_data",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -9,7 +9,7 @@
 						"referenceName": "ds_2020_payroll_data",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "sourcetable2020payroll"
 				}
 			],
 			"sinks": [
@@ -18,12 +18,12 @@
 						"referenceName": "ds_sql_2020_nyc_payroll_data",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "sinksql2020payrolltable"
 				}
 			],
 			"transformations": [
 				{
-					"name": "cast1"
+					"name": "cast2020payrolltosqltypes"
 				}
 			],
 			"scriptLines": [
@@ -50,11 +50,10 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 cast(output(",
+				"     ignoreNoFilesFound: false) ~> sourcetable2020payroll",
+				"sourcetable2020payroll cast(output(",
 				"          FiscalYear as integer,",
 				"          PayrollNumber as integer,",
-				"          AgencyID as string,",
 				"          AgencyStartDate as date 'MM/dd/yyyy',",
 				"          BaseSalary as decimal(10,0),",
 				"          RegularHours as decimal(10,0),",
@@ -63,8 +62,8 @@
 				"          TotalOTPaid as decimal(10,0),",
 				"          TotalOtherPay as decimal(10,0)",
 				"     ),",
-				"     errors: true) ~> cast1",
-				"cast1 sink(allowSchemaDrift: true,",
+				"     errors: true) ~> cast2020payrolltosqltypes",
+				"cast2020payrolltosqltypes sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          FiscalYear as integer,",
@@ -96,17 +95,26 @@
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError',",
 				"     mapColumn(",
+				"          FiscalYear,",
+				"          PayrollNumber,",
 				"          AgencyID,",
 				"          AgencyName,",
 				"          EmployeeID,",
 				"          LastName,",
 				"          FirstName,",
+				"          AgencyStartDate,",
 				"          WorkLocationBorough,",
 				"          TitleCode,",
 				"          TitleDescription,",
 				"          LeaveStatusasofJune30,",
-				"          PayBasis",
-				"     )) ~> sink1"
+				"          BaseSalary,",
+				"          PayBasis,",
+				"          RegularHours,",
+				"          RegularGrossPaid,",
+				"          OTHours,",
+				"          TotalOTPaid,",
+				"          TotalOtherPay",
+				"     )) ~> sinksql2020payrolltable"
 			]
 		}
 	}
