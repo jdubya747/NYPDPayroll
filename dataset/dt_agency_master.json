@@ -1,10 +1,6 @@
 {
 	"name": "dt_agency_master",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "ls_AzureDataLakeStorageGen2",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
