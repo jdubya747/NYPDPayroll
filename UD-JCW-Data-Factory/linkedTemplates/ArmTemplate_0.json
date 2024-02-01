@@ -326,7 +326,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_sql_2020_nyc_payroll_data')]",
+			"name": "[concat(parameters('factoryName'), '/ds_sql_2020_payroll_data')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -462,7 +462,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_synapse_analytics_payroll_data')]",
+			"name": "[concat(parameters('factoryName'), '/ds_synapse_analytics_2021_payroll_data')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -772,7 +772,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/df_source2sink_payroll_data')]",
+			"name": "[concat(parameters('factoryName'), '/df_source2sink_2021_payroll_data')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -790,7 +790,7 @@
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "ds_synapse_analytics_payroll_data",
+								"referenceName": "ds_synapse_analytics_2021_payroll_data",
 								"type": "DatasetReference"
 							},
 							"name": "sinksql2021payrolltable"
@@ -896,7 +896,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_payroll_data')]",
-				"[concat(variables('factoryId'), '/datasets/ds_synapse_analytics_payroll_data')]"
+				"[concat(variables('factoryId'), '/datasets/ds_synapse_analytics_2021_payroll_data')]"
 			]
 		},
 		{
