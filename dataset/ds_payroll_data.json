@@ -1,5 +1,5 @@
 {
-	"name": "ds_2021_payroll",
+	"name": "ds_payroll_data",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_ADLS_Data_Files",

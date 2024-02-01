@@ -1,12 +1,12 @@
 {
-	"name": "df_source2sink2021payrolltable",
+	"name": "df_source2sink_payroll_data",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "ds_2021_payroll",
+						"referenceName": "ds_payroll_data",
 						"type": "DatasetReference"
 					},
 					"name": "sourcetable2021payrol"
