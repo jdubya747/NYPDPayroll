@@ -29,7 +29,7 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_2021_payroll')]",
+			"name": "[concat(parameters('factoryName'), '/ds_payroll_data')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -656,7 +656,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/df_source2sink2021payrolltable')]",
+			"name": "[concat(parameters('factoryName'), '/df_source2sink_payroll_data')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -665,7 +665,7 @@
 					"sources": [
 						{
 							"dataset": {
-								"referenceName": "ds_2021_payroll",
+								"referenceName": "ds_payroll_data",
 								"type": "DatasetReference"
 							},
 							"name": "sourcetable2021payrol"
@@ -674,7 +674,7 @@
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "ds_sql_2021_nyc_payroll_data",
+								"referenceName": "ds_synapse_analytics_payroll_data",
 								"type": "DatasetReference"
 							},
 							"name": "sinksql2021payrolltable"
@@ -750,6 +750,7 @@
 						"     updateable:false,",
 						"     upsertable:false,",
 						"     format: 'table',",
+						"     staged: true,",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
 						"     errorHandlingOption: 'stopOnFirstError',",
@@ -778,8 +779,8 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/ds_2021_payroll')]",
-				"[concat(variables('factoryId'), '/datasets/ds_sql_2021_nyc_payroll_data')]"
+				"[concat(variables('factoryId'), '/datasets/ds_payroll_data')]",
+				"[concat(variables('factoryId'), '/datasets/ds_synapse_analytics_payroll_data')]"
 			]
 		},
 		{
@@ -916,6 +917,64 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_agency_master')]",
 				"[concat(variables('factoryId'), '/datasets/ds_synapse_analytics_payroll_agency_md')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/df_source2sink_title_master')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "ds_title_master",
+								"type": "DatasetReference"
+							},
+							"name": "sourcetabletitlemaster"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "ds_synapse_analytics_payroll_title_md",
+								"type": "DatasetReference"
+							},
+							"name": "sinksqltitlemaster"
+						}
+					],
+					"transformations": [],
+					"scriptLines": [
+						"source(output(",
+						"          TitleCode as string,",
+						"          TitleDescription as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> sourcetabletitlemaster",
+						"sourcetabletitlemaster sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          TitleCode as string,",
+						"          TitleDescription as string",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     staged: true,",
+						"     allowCopyCommand: true,",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sinksqltitlemaster"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_title_master')]",
+				"[concat(variables('factoryId'), '/datasets/ds_synapse_analytics_payroll_title_md')]"
 			]
 		}
 	]
