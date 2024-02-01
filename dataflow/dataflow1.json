@@ -1,0 +1,115 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_2021_payroll",
+						"type": "DatasetReference"
+					},
+					"name": "sourcetable2021payrol"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_sql_2021_nyc_payroll_data",
+						"type": "DatasetReference"
+					},
+					"name": "sinksql2021payrolltable"
+				}
+			],
+			"transformations": [
+				{
+					"name": "cast2021payrolltosqltypes"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          FiscalYear as string,",
+				"          PayrollNumber as string,",
+				"          AgencyCode as string,",
+				"          AgencyName as string,",
+				"          EmployeeID as string,",
+				"          LastName as string,",
+				"          FirstName as string,",
+				"          AgencyStartDate as string,",
+				"          WorkLocationBorough as string,",
+				"          TitleCode as string,",
+				"          TitleDescription as string,",
+				"          LeaveStatusasofJune30 as string,",
+				"          BaseSalary as string,",
+				"          PayBasis as string,",
+				"          RegularHours as string,",
+				"          RegularGrossPaid as string,",
+				"          OTHours as string,",
+				"          TotalOTPaid as string,",
+				"          TotalOtherPay as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourcetable2021payrol",
+				"sourcetable2021payrol cast(output(",
+				"          FiscalYear as string '123',",
+				"          PayrollNumber as string '123',",
+				"          AgencyCode as string,",
+				"          AgencyName as string,",
+				"          EmployeeID as string,",
+				"          LastName as string,",
+				"          FirstName as string,",
+				"          AgencyStartDate as string 'date',",
+				"          WorkLocationBorough as string",
+				"     ),",
+				"     errors: true) ~> cast2021payrolltosqltypes",
+				"cast2021payrolltosqltypes sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          FiscalYear as integer,",
+				"          PayrollNumber as integer,",
+				"          AgencyID as string,",
+				"          AgencyName as string,",
+				"          EmployeeID as string,",
+				"          LastName as string,",
+				"          FirstName as string,",
+				"          AgencyStartDate as date,",
+				"          WorkLocationBorough as string,",
+				"          TitleCode as string,",
+				"          TitleDescription as string,",
+				"          LeaveStatusasofJune30 as string,",
+				"          BaseSalary as double,",
+				"          PayBasis as string,",
+				"          RegularHours as double,",
+				"          RegularGrossPaid as double,",
+				"          OTHours as double,",
+				"          TotalOTPaid as double,",
+				"          TotalOtherPay as double",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          FiscalYear,",
+				"          PayrollNumber,",
+				"          AgencyID = AgencyCode,",
+				"          AgencyName,",
+				"          EmployeeID,",
+				"          LastName,",
+				"          FirstName,",
+				"          AgencyStartDate,",
+				"          WorkLocationBorough,",
+				"          TitleCode,",
+				"          TitleDescription,",
+				"          LeaveStatusasofJune30,",
+				"          PayBasis",
+				"     )) ~> sinksql2021payrolltable"
+			]
+		}
+	}
+}
