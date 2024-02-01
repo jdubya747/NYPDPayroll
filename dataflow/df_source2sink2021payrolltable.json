@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "ds_sql_2021_nyc_payroll_data",
+						"referenceName": "ds_synapse_analytics_payroll_data",
 						"type": "DatasetReference"
 					},
 					"name": "sinksql2021payrolltable"
@@ -91,6 +91,7 @@
 				"     updateable:false,",
 				"     upsertable:false,",
 				"     format: 'table',",
+				"     staged: true,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError',",
