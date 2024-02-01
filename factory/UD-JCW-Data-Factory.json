@@ -1,0 +1,9 @@
+{
+	"name": "UD-JCW-Data-Factory",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "008d89b5-3d75-4e66-978c-ed42aca860b1",
+		"tenantId": "dbbc7f14-98af-491a-b530-5b37e218fd50"
+	}
+}
