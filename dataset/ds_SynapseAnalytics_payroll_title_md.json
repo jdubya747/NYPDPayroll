@@ -1,5 +1,5 @@
 {
-	"name": "ds_SynapseAnalytics_payroll_title",
+	"name": "ds_SynapseAnalytics_payroll_title_md",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_SynapseAnalytics",
