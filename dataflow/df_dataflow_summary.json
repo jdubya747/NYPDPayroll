@@ -19,7 +19,14 @@
 					"name": "payroll2021"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"name": "sinkSQLSummaryTable"
+				},
+				{
+					"name": "sinkStaging"
+				}
+			],
 			"transformations": [
 				{
 					"name": "payrollunion20202021"
@@ -94,7 +101,16 @@
 				"fiscalyearfilter derive(TotalPaid = RegularGrossPaid + TotalOTPaid + TotalOtherPay) ~> derivedColumnTotalPaid",
 				"derivedColumnTotalPaid aggregate(groupBy(AgencyName,",
 				"          FiscalYear),",
-				"     {Totality Paid} = sum(TotalPaid)) ~> aggregateAgencyNameFiscalYear"
+				"     {Totality Paid} = sum(TotalPaid)) ~> aggregateAgencyNameFiscalYear",
+				"aggregateAgencyNameFiscalYear sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 1) ~> sinkSQLSummaryTable",
+				"aggregateAgencyNameFiscalYear sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkStaging"
 			]
 		}
 	}
