@@ -26,11 +26,14 @@
 				},
 				{
 					"name": "fiscalyearfilter"
+				},
+				{
+					"name": "derivedColumnTotalPaid"
 				}
 			],
 			"scriptLines": [
 				"parameters{",
-				"     dataflow_param_fiscalyear as string (\"2020\")",
+				"     dataflow_param_fiscalyear as integer (2020)",
 				"}",
 				"source(output(",
 				"          FiscalYear as integer,",
@@ -84,7 +87,8 @@
 				"     format: 'table',",
 				"     staged: true) ~> payroll2021",
 				"payroll2020, payroll2021 union(byName: true)~> payrollunion20202021",
-				"payrollunion20202021 filter(toInteger(FiscalYear)>=$dataflow_param_fiscalyear) ~> fiscalyearfilter"
+				"payrollunion20202021 filter(FiscalYear >= $dataflow_param_fiscalyear) ~> fiscalyearfilter",
+				"fiscalyearfilter derive(TotalPaid = RegularGrossPaid + TotalOTPaid + TotalOtherPay) ~> derivedColumnTotalPaid"
 			]
 		}
 	}
