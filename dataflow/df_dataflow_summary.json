@@ -29,6 +29,9 @@
 				},
 				{
 					"name": "derivedColumnTotalPaid"
+				},
+				{
+					"name": "aggregateAgencyNameFiscalYear"
 				}
 			],
 			"scriptLines": [
@@ -88,7 +91,10 @@
 				"     staged: true) ~> payroll2021",
 				"payroll2020, payroll2021 union(byName: true)~> payrollunion20202021",
 				"payrollunion20202021 filter(FiscalYear >= $dataflow_param_fiscalyear) ~> fiscalyearfilter",
-				"fiscalyearfilter derive(TotalPaid = RegularGrossPaid + TotalOTPaid + TotalOtherPay) ~> derivedColumnTotalPaid"
+				"fiscalyearfilter derive(TotalPaid = RegularGrossPaid + TotalOTPaid + TotalOtherPay) ~> derivedColumnTotalPaid",
+				"derivedColumnTotalPaid aggregate(groupBy(AgencyName,",
+				"          FiscalYear),",
+				"     {Totality Paid} = sum(TotalPaid)) ~> aggregateAgencyNameFiscalYear"
 			]
 		}
 	}
