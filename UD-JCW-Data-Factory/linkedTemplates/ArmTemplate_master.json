@@ -7,6 +7,22 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "UD-JCW-Data-Factory"
 		},
+		"ls_data_lake_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_data_lake'"
+		},
+		"ls_sql_database_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_sql_database'"
+		},
+		"ls_synapse_analytics_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_synapse_analytics'"
+		},
+		"ls_data_lake_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsnycpayrolljohncw.dfs.core.windows.net/"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -33,6 +49,18 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"ls_data_lake_accountKey": {
+						"value": "[parameters('ls_data_lake_accountKey')]"
+					},
+					"ls_sql_database_connectionString": {
+						"value": "[parameters('ls_sql_database_connectionString')]"
+					},
+					"ls_synapse_analytics_connectionString": {
+						"value": "[parameters('ls_synapse_analytics_connectionString')]"
+					},
+					"ls_data_lake_properties_typeProperties_url": {
+						"value": "[parameters('ls_data_lake_properties_typeProperties_url')]"
 					}
 				}
 			},

@@ -4,6 +4,18 @@
 	"parameters": {
 		"factoryName": {
 			"value": "UD-JCW-Data-Factory"
+		},
+		"ls_data_lake_accountKey": {
+			"value": ""
+		},
+		"ls_sql_database_connectionString": {
+			"value": ""
+		},
+		"ls_synapse_analytics_connectionString": {
+			"value": ""
+		},
+		"ls_data_lake_properties_typeProperties_url": {
+			"value": "https://adlsnycpayrolljohncw.dfs.core.windows.net/"
 		}
 	}
 }
