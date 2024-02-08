@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "ds_sql_2020_payroll_data",
+						"referenceName": "ds_sql_2021_payroll_data",
 						"type": "DatasetReference"
 					},
 					"name": "sinksql2020payrolltable"

@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "ds_sql_2020_payroll_data",
+						"referenceName": "ds_sql_2021_payroll_data",
 						"type": "DatasetReference"
 					},
 					"name": "payroll2020"
@@ -110,7 +110,8 @@
 				"aggregateAgencyNameFiscalYear sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sinkStaging"
+				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 1) ~> sinkStaging"
 			]
 		}
 	}

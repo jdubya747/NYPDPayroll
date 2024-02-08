@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "ds_payroll_data",
+						"referenceName": "ds_2021_payroll_data",
 						"type": "DatasetReference"
 					},
 					"name": "sourcetable2021payrol"
