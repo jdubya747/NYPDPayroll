@@ -29,6 +29,218 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('workspaceName'), '/ds_adlgen2_2021_payroll')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_data_lake_gen2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "nycpayroll_2021.csv",
+						"folderPath": "dirpayrollfiles",
+						"fileSystem": "nycpayrolldata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "FiscalYear",
+						"type": "String"
+					},
+					{
+						"name": "PayrollNumber",
+						"type": "String"
+					},
+					{
+						"name": "AgencyCode",
+						"type": "String"
+					},
+					{
+						"name": "AgencyName",
+						"type": "String"
+					},
+					{
+						"name": "EmployeeID",
+						"type": "String"
+					},
+					{
+						"name": "LastName",
+						"type": "String"
+					},
+					{
+						"name": "FirstName",
+						"type": "String"
+					},
+					{
+						"name": "AgencyStartDate",
+						"type": "String"
+					},
+					{
+						"name": "WorkLocationBorough",
+						"type": "String"
+					},
+					{
+						"name": "TitleCode",
+						"type": "String"
+					},
+					{
+						"name": "TitleDescription",
+						"type": "String"
+					},
+					{
+						"name": "LeaveStatusasofJune30",
+						"type": "String"
+					},
+					{
+						"name": "BaseSalary",
+						"type": "String"
+					},
+					{
+						"name": "PayBasis",
+						"type": "String"
+					},
+					{
+						"name": "RegularHours",
+						"type": "String"
+					},
+					{
+						"name": "RegularGrossPaid",
+						"type": "String"
+					},
+					{
+						"name": "OTHours",
+						"type": "String"
+					},
+					{
+						"name": "TotalOTPaid",
+						"type": "String"
+					},
+					{
+						"name": "TotalOtherPay",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/ls_data_lake_gen2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/ds_adlgen2_agencymaster')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_data_lake_gen2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/ls_data_lake_gen2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/ds_adlgen2_empmaster')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_data_lake_gen2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "EmpMaster.csv",
+						"folderPath": "dirpayrollfiles",
+						"fileSystem": "nycpayrolldata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "EmployeeID",
+						"type": "String"
+					},
+					{
+						"name": "LastName",
+						"type": "String"
+					},
+					{
+						"name": "FirstName",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/ls_data_lake_gen2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/ds_adlgen2_titlemaster')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_data_lake_gen2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "TitleMaster.csv",
+						"folderPath": "dirpayrollfiles",
+						"fileSystem": "nycpayrolldata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "TitleCode",
+						"type": "String"
+					},
+					{
+						"name": "TitleDescription",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/ls_data_lake_gen2')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/ls_data_lake_gen2')]",
 			"type": "Microsoft.Synapse/workspaces/linkedServices",
 			"apiVersion": "2019-06-01-preview",
@@ -60,15 +272,9 @@
 				"type": "AzureSqlDatabase",
 				"typeProperties": {
 					"connectionString": "[parameters('ls_sql_database_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "integrationRuntime1",
-					"type": "IntegrationRuntimeReference"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/integrationRuntimes/integrationRuntime1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/ls_synapse_analytics')]",
@@ -79,15 +285,9 @@
 				"type": "AzureSqlDW",
 				"typeProperties": {
 					"connectionString": "[parameters('ls_synapse_analytics_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "integrationRuntime1",
-					"type": "IntegrationRuntimeReference"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/integrationRuntimes/integrationRuntime1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/AutoResolveIntegrationRuntime')]",
@@ -102,27 +302,6 @@
 							"computeType": "General",
 							"coreCount": 8,
 							"timeToLive": 0
-						}
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/integrationRuntime1')]",
-			"type": "Microsoft.Synapse/workspaces/integrationRuntimes",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"type": "Managed",
-				"typeProperties": {
-					"computeProperties": {
-						"location": "AutoResolve",
-						"dataFlowProperties": {
-							"computeType": "General",
-							"coreCount": 8,
-							"timeToLive": 10,
-							"cleanup": false,
-							"customProperties": []
 						}
 					}
 				}
