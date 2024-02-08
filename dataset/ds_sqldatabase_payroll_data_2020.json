@@ -1,5 +1,5 @@
 {
-	"name": "ds_sqldatabase_paroll_data_2020",
+	"name": "ds_sqldatabase_payroll_data_2020",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_sql_database",
