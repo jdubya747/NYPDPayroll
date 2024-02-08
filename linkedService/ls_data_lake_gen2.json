@@ -1,15 +1,15 @@
 {
 	"name": "ls_data_lake_gen2",
-	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureBlobFS",
 		"typeProperties": {
-			"url": "https://dlsgen2accountjcw.dfs.core.windows.net/",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VARDNERkI2NUQtMTY4Ny00MDM1LUExNUEtMjA4RkNDQUJFMEVFXzUyNTZkMWIwLTRlODctNGQ0ZC05MTQ3LWU5MDEzYmM1ODAzYSINCn0="
+			"url": "https://adlsnycpayrolljohncw.dfs.core.windows.net/",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEFBNjYwRDVFLUExQUUtNDU1Qi05QUNBLThENDA1OTI2OEE0OV9jY2RlY2M5ZS05MjI3LTQwOGItYWE0ZS05Y2M1ZWY2MGZiYWMiDQp9"
 		},
 		"connectVia": {
-			"referenceName": "AutoResolveIntegrationRuntime",
+			"referenceName": "integrationRuntime1",
 			"type": "IntegrationRuntimeReference"
 		}
 	}
