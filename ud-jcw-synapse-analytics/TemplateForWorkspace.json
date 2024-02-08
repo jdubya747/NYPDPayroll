@@ -21,7 +21,7 @@
 		},
 		"ls_data_lake_gen2_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://dlsgen2accountjcw.dfs.core.windows.net/"
+			"defaultValue": "https://adlsnycpayrolljohncw.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
@@ -62,12 +62,12 @@
 					"connectionString": "[parameters('ls_sql_database_connectionString')]"
 				},
 				"connectVia": {
-					"referenceName": "AutoResolveIntegrationRuntime",
+					"referenceName": "integrationRuntime1",
 					"type": "IntegrationRuntimeReference"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+				"[concat(variables('workspaceId'), '/integrationRuntimes/integrationRuntime1')]"
 			]
 		},
 		{
@@ -81,12 +81,12 @@
 					"connectionString": "[parameters('ls_synapse_analytics_connectionString')]"
 				},
 				"connectVia": {
-					"referenceName": "AutoResolveIntegrationRuntime",
+					"referenceName": "integrationRuntime1",
 					"type": "IntegrationRuntimeReference"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+				"[concat(variables('workspaceId'), '/integrationRuntimes/integrationRuntime1')]"
 			]
 		},
 		{
