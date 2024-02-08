@@ -1,8 +1,8 @@
 {
-	"name": "ds_synapse_analytics_2021_payroll_data",
+	"name": "ds_sql_2020_payroll_data",
 	"properties": {
 		"annotations": [],
-		"type": "AzureSqlDWTable",
+		"type": "AzureSqlTable",
 		"schema": [
 			{
 				"name": "FiscalYear",

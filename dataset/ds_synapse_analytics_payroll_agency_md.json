@@ -1,10 +1,6 @@
 {
 	"name": "ds_synapse_analytics_payroll_agency_md",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "ls_SynapseAnalytics",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "AzureSqlDWTable",
 		"schema": [
