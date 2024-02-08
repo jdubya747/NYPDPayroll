@@ -7,19 +7,19 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "UD-JCW-Data-Factory"
 		},
-		"Ls_SqlDB_2021_Data_connectionString": {
+		"ls_data_lake_gen2_accountKey": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'Ls_SqlDB_2021_Data'"
+			"metadata": "Secure string for 'accountKey' of 'ls_data_lake_gen2'"
 		},
-		"ls_ADLS_Data_Files_accountKey": {
+		"ls_sql_database_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'ls_ADLS_Data_Files'"
+			"metadata": "Secure string for 'connectionString' of 'ls_sql_database'"
 		},
-		"ls_SynapseAnalytics_connectionString": {
+		"ls_synapse_analytics_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'ls_SynapseAnalytics'"
+			"metadata": "Secure string for 'connectionString' of 'ls_synapse_analytics'"
 		},
-		"ls_ADLS_Data_Files_properties_typeProperties_url": {
+		"ls_data_lake_gen2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsnycpayrolljohncw.dfs.core.windows.net/"
 		},
@@ -50,41 +50,21 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"Ls_SqlDB_2021_Data_connectionString": {
-						"value": "[parameters('Ls_SqlDB_2021_Data_connectionString')]"
+					"ls_data_lake_gen2_accountKey": {
+						"value": "[parameters('ls_data_lake_gen2_accountKey')]"
 					},
-					"ls_ADLS_Data_Files_accountKey": {
-						"value": "[parameters('ls_ADLS_Data_Files_accountKey')]"
+					"ls_sql_database_connectionString": {
+						"value": "[parameters('ls_sql_database_connectionString')]"
 					},
-					"ls_SynapseAnalytics_connectionString": {
-						"value": "[parameters('ls_SynapseAnalytics_connectionString')]"
+					"ls_synapse_analytics_connectionString": {
+						"value": "[parameters('ls_synapse_analytics_connectionString')]"
 					},
-					"ls_ADLS_Data_Files_properties_typeProperties_url": {
-						"value": "[parameters('ls_ADLS_Data_Files_properties_typeProperties_url')]"
+					"ls_data_lake_gen2_properties_typeProperties_url": {
+						"value": "[parameters('ls_data_lake_gen2_properties_typeProperties_url')]"
 					}
 				}
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "UD-JCW-Data-Factory_ArmTemplate_1",
-			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
-			"properties": {
-				"mode": "incremental",
-				"templateLink": {
-					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
-					"contentVersion": "1.0.0.0"
-				},
-				"parameters": {
-					"factoryName": {
-						"value": "[parameters('factoryName')]"
-					}
-				}
-			},
-			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'UD-JCW-Data-Factory_ArmTemplate_0')]"
-			]
 		}
 	]
 }
