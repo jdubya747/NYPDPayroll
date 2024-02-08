@@ -1,0 +1,16 @@
+{
+	"name": "ds_sqldatabase_payroll_data_2021",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "NYC_Payroll_Data_2021"
+		}
+	}
+}
