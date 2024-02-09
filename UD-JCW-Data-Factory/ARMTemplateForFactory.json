@@ -873,7 +873,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_Emp_master')]",
+			"name": "[concat(parameters('factoryName'), '/df_file_emp_master')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -923,6 +923,62 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_adlgen2_empmaster')]",
 				"[concat(variables('factoryId'), '/datasets/ds_sqldatabase_payroll_emp_md')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/df_file_title_master')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "ds_adlgen2_titlemaster",
+								"type": "DatasetReference"
+							},
+							"name": "SourceFileTitleMaster"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "ds_sqldatabase_payroll_title_md",
+								"type": "DatasetReference"
+							},
+							"name": "SinkSqlTitleMaster"
+						}
+					],
+					"transformations": [],
+					"scriptLines": [
+						"source(output(",
+						"          TitleCode as string,",
+						"          TitleDescription as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> SourceFileTitleMaster",
+						"SourceFileTitleMaster sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          TitleCode as string,",
+						"          TitleDescription as string",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> SinkSqlTitleMaster"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_adlgen2_titlemaster')]",
+				"[concat(variables('factoryId'), '/datasets/ds_sqldatabase_payroll_title_md')]"
 			]
 		}
 	]
