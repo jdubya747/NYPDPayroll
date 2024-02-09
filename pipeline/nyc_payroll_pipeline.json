@@ -193,9 +193,16 @@
 							"dataflow_param_fiscalyear": "2020"
 						}
 					},
-					"compute": {
-						"coreCount": 8,
-						"computeType": "General"
+					"staging": {
+						"linkedService": {
+							"referenceName": "ls_data_lake",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "nycpayrolldata/dirstaging"
+					},
+					"integrationRuntime": {
+						"referenceName": "integrationRuntime2",
+						"type": "IntegrationRuntimeReference"
 					},
 					"traceLevel": "Fine"
 				}
