@@ -1,5 +1,5 @@
 {
-	"name": "df_file_2021_payroll",
+	"name": "df_2021_payroll",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {

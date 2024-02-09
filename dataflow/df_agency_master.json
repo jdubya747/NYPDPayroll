@@ -1,40 +1,40 @@
 {
-	"name": "df_title_master",
+	"name": "df_agency_master",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "ds_adlgen2_titlemaster",
+						"referenceName": "ds_adlgen2_agencymaster",
 						"type": "DatasetReference"
 					},
-					"name": "SourceFileTitleMaster"
+					"name": "SourceFileAngencyMaster"
 				}
 			],
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "ds_sqldatabase_payroll_title_md",
+						"referenceName": "ds_sqldatabase_payroll_agency_md",
 						"type": "DatasetReference"
 					},
-					"name": "SinkSqlTitleMaster"
+					"name": "SinkSqlAgencyMaster"
 				}
 			],
 			"transformations": [],
 			"scriptLines": [
 				"source(output(",
-				"          TitleCode as string,",
-				"          TitleDescription as string",
+				"          AgencyID as string,",
+				"          AgencyName as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> SourceFileTitleMaster",
-				"SourceFileTitleMaster sink(allowSchemaDrift: true,",
+				"     ignoreNoFilesFound: false) ~> SourceFileAngencyMaster",
+				"SourceFileAngencyMaster sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
-				"          TitleCode as string,",
-				"          TitleDescription as string",
+				"          AgencyID as string,",
+				"          AgencyName as string",
 				"     ),",
 				"     deletable:false,",
 				"     insertable:true,",
@@ -43,7 +43,7 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> SinkSqlTitleMaster"
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkSqlAgencyMaster"
 			]
 		}
 	}
