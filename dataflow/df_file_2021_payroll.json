@@ -9,7 +9,7 @@
 						"referenceName": "ds_adlgen2_2021_payroll",
 						"type": "DatasetReference"
 					},
-					"name": "source2021payrollfile"
+					"name": "SourceFile2021Payroll"
 				}
 			],
 			"sinks": [
@@ -18,7 +18,7 @@
 						"referenceName": "ds_sqldatabase_payroll_data_2021",
 						"type": "DatasetReference"
 					},
-					"name": "sinksql2021payroll"
+					"name": "SinkSql2021Payroll"
 				}
 			],
 			"transformations": [],
@@ -46,8 +46,8 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source2021payrollfile",
-				"source2021payrollfile sink(allowSchemaDrift: true,",
+				"     ignoreNoFilesFound: false) ~> SourceFile2021Payroll",
+				"SourceFile2021Payroll sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
 				"     insertable:true,",
@@ -56,7 +56,7 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sinksql2021payroll"
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkSql2021Payroll"
 			]
 		}
 	}

@@ -9,7 +9,7 @@
 						"referenceName": "ds_adlgen2_2020_payroll",
 						"type": "DatasetReference"
 					},
-					"name": "source2020parollfile"
+					"name": "SourceFile2020Payroll"
 				}
 			],
 			"sinks": [
@@ -18,7 +18,7 @@
 						"referenceName": "ds_sqldatabase_payroll_data_2020",
 						"type": "DatasetReference"
 					},
-					"name": "sinksql2020payroll"
+					"name": "SinkSql2020Payroll"
 				}
 			],
 			"transformations": [],
@@ -46,8 +46,8 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source2020parollfile",
-				"source2020parollfile sink(allowSchemaDrift: true,",
+				"     ignoreNoFilesFound: false) ~> SourceFile2020Payroll",
+				"SourceFile2020Payroll sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          FiscalYear as integer,",
@@ -77,7 +77,7 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sinksql2020payroll"
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkSql2020Payroll"
 			]
 		}
 	}
