@@ -32,7 +32,11 @@
 						"referenceName": "ds_staging",
 						"type": "DatasetReference"
 					},
-					"name": "SinkADLGen2Staging"
+					"name": "SinkADLGen2Staging",
+					"rejectedDataLinkedService": {
+						"referenceName": "ls_data_lake",
+						"type": "LinkedServiceReference"
+					}
 				}
 			],
 			"transformations": [
