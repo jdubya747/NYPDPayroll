@@ -1,37 +1,40 @@
 {
-	"name": "df_file_emp_master",
+	"name": "df_file_title_master",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "ds_adlgen2_empmaster",
+						"referenceName": "ds_adlgen2_titlemaster",
 						"type": "DatasetReference"
 					},
-					"name": "SourceFileEmpMaster"
+					"name": "SourceFileTitleMaster"
 				}
 			],
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "ds_sqldatabase_payroll_emp_md",
+						"referenceName": "ds_sqldatabase_payroll_title_md",
 						"type": "DatasetReference"
 					},
-					"name": "SinkSqlEmpMaster"
+					"name": "SinkSqlTitleMaster"
 				}
 			],
 			"transformations": [],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          TitleCode as string,",
+				"          TitleDescription as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> SourceFileEmpMaster",
-				"SourceFileEmpMaster sink(allowSchemaDrift: true,",
+				"     ignoreNoFilesFound: false) ~> SourceFileTitleMaster",
+				"SourceFileTitleMaster sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
-				"          EmployeeID as string,",
-				"          LastName as string,",
-				"          FirstName as string",
+				"          TitleCode as string,",
+				"          TitleDescription as string",
 				"     ),",
 				"     deletable:false,",
 				"     insertable:true,",
@@ -40,7 +43,7 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> SinkSqlEmpMaster"
+				"     errorHandlingOption: 'stopOnFirstError') ~> SinkSqlTitleMaster"
 			]
 		}
 	}
