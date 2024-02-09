@@ -714,7 +714,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/df_file_2021_payroll')]",
+			"name": "[concat(parameters('factoryName'), '/df_2021_payroll')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -783,7 +783,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/df_file_2020_payroll')]",
+			"name": "[concat(parameters('factoryName'), '/df_2020_payroll')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -873,7 +873,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/df_file_emp_master')]",
+			"name": "[concat(parameters('factoryName'), '/df_emp_master')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
 			"properties": {

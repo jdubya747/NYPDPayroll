@@ -714,7 +714,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/df_file_2021_payroll')]",
+			"name": "[concat(parameters('factoryName'), '/df_2021_payroll')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -783,7 +783,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/df_file_2020_payroll')]",
+			"name": "[concat(parameters('factoryName'), '/df_2020_payroll')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -873,7 +873,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/df_file_emp_master')]",
+			"name": "[concat(parameters('factoryName'), '/df_emp_master')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -926,7 +926,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/df_file_title_master')]",
+			"name": "[concat(parameters('factoryName'), '/df_title_master')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -979,6 +979,62 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_adlgen2_titlemaster')]",
 				"[concat(variables('factoryId'), '/datasets/ds_sqldatabase_payroll_title_md')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/df_agency_master')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "ds_adlgen2_agencymaster",
+								"type": "DatasetReference"
+							},
+							"name": "SourceFileAngencyMaster"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "ds_sqldatabase_payroll_agency_md",
+								"type": "DatasetReference"
+							},
+							"name": "SinkSqlAgencyMaster"
+						}
+					],
+					"transformations": [],
+					"scriptLines": [
+						"source(output(",
+						"          AgencyID as string,",
+						"          AgencyName as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> SourceFileAngencyMaster",
+						"SourceFileAngencyMaster sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          AgencyID as string,",
+						"          AgencyName as string",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> SinkSqlAgencyMaster"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_adlgen2_agencymaster')]",
+				"[concat(variables('factoryId'), '/datasets/ds_sqldatabase_payroll_agency_md')]"
 			]
 		}
 	]
