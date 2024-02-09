@@ -1,0 +1,23 @@
+{
+	"name": "ds_staging",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_data_lake",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "dirstaging",
+				"fileSystem": "nycpayrolldata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
