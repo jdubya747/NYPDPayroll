@@ -194,10 +194,6 @@
 						}
 					},
 					"staging": {
-						"linkedService": {
-							"referenceName": "ls_data_lake",
-							"type": "LinkedServiceReference"
-						},
 						"folderPath": "nycpayrolldata/dirstaging"
 					},
 					"integrationRuntime": {
