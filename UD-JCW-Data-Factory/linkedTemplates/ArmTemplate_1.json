@@ -157,7 +157,7 @@
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "ds_synapse_analytics_nyc_payroll_summary",
+								"referenceName": "ds_sqldatabase_payroll_summary",
 								"type": "DatasetReference"
 							},
 							"name": "SinkSqlPayrollSummaryTable"
@@ -239,8 +239,6 @@
 						"     updateable:false,",
 						"     upsertable:false,",
 						"     format: 'table',",
-						"     staged: true,",
-						"     allowCopyCommand: true,",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
 						"     errorHandlingOption: 'stopOnFirstError') ~> SinkSqlPayrollSummaryTable",
@@ -594,13 +592,7 @@
 									"SinkADLGen2Staging": {}
 								}
 							},
-							"staging": {
-								"linkedService": {
-									"referenceName": "ls_data_lake",
-									"type": "LinkedServiceReference"
-								},
-								"folderPath": "nycpayrolldata/dirstaging"
-							},
+							"staging": {},
 							"integrationRuntime": {
 								"referenceName": "integrationRuntime2",
 								"type": "IntegrationRuntimeReference"
