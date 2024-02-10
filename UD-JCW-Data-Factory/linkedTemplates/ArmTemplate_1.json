@@ -13,7 +13,7 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/df_emp_master')]",
+			"name": "[concat(parameters('factoryName'), '/df_2021_payroll')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -22,86 +22,49 @@
 					"sources": [
 						{
 							"dataset": {
-								"referenceName": "ds_adlgen2_empmaster",
+								"referenceName": "ds_adlgen2_2021_payroll",
 								"type": "DatasetReference"
 							},
-							"name": "SourceFileEmpMaster"
+							"name": "SourceFile2021Payroll"
 						}
 					],
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "ds_sqldatabase_payroll_emp_md",
+								"referenceName": "ds_sqldatabase_payroll_data_2021",
 								"type": "DatasetReference"
 							},
-							"name": "SinkSqlEmpMaster"
-						}
-					],
-					"transformations": [],
-					"scriptLines": [
-						"source(allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     ignoreNoFilesFound: false) ~> SourceFileEmpMaster",
-						"SourceFileEmpMaster sink(allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     input(",
-						"          EmployeeID as string,",
-						"          LastName as string,",
-						"          FirstName as string",
-						"     ),",
-						"     deletable:false,",
-						"     insertable:true,",
-						"     updateable:false,",
-						"     upsertable:false,",
-						"     format: 'table',",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true,",
-						"     errorHandlingOption: 'stopOnFirstError') ~> SinkSqlEmpMaster"
-					]
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/df_title_master')]",
-			"type": "Microsoft.DataFactory/factories/dataflows",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "MappingDataFlow",
-				"typeProperties": {
-					"sources": [
-						{
-							"dataset": {
-								"referenceName": "ds_adlgen2_titlemaster",
-								"type": "DatasetReference"
-							},
-							"name": "SourceFileTitleMaster"
-						}
-					],
-					"sinks": [
-						{
-							"dataset": {
-								"referenceName": "ds_sqldatabase_payroll_title_md",
-								"type": "DatasetReference"
-							},
-							"name": "SinkSqlTitleMaster"
+							"name": "SinkSql2021Payroll"
 						}
 					],
 					"transformations": [],
 					"scriptLines": [
 						"source(output(",
+						"          FiscalYear as integer,",
+						"          PayrollNumber as string,",
+						"          AgencyCode as string,",
+						"          AgencyName as string,",
+						"          EmployeeID as string,",
+						"          LastName as string,",
+						"          FirstName as string,",
+						"          AgencyStartDate as date 'MM/dd/yyyy',",
+						"          WorkLocationBorough as string,",
 						"          TitleCode as string,",
-						"          TitleDescription as string",
+						"          TitleDescription as string,",
+						"          LeaveStatusasofJune30 as string,",
+						"          BaseSalary as float,",
+						"          PayBasis as string,",
+						"          RegularHours as float,",
+						"          RegularGrossPaid as float,",
+						"          OTHours as float,",
+						"          TotalOTPaid as float,",
+						"          TotalOtherPay as float",
 						"     ),",
 						"     allowSchemaDrift: true,",
 						"     validateSchema: false,",
-						"     ignoreNoFilesFound: false) ~> SourceFileTitleMaster",
-						"SourceFileTitleMaster sink(allowSchemaDrift: true,",
+						"     ignoreNoFilesFound: false) ~> SourceFile2021Payroll",
+						"SourceFile2021Payroll sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
-						"     input(",
-						"          TitleCode as string,",
-						"          TitleDescription as string",
-						"     ),",
 						"     deletable:false,",
 						"     insertable:true,",
 						"     updateable:false,",
@@ -109,7 +72,7 @@
 						"     format: 'table',",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
-						"     errorHandlingOption: 'stopOnFirstError') ~> SinkSqlTitleMaster"
+						"     errorHandlingOption: 'stopOnFirstError') ~> SinkSql2021Payroll"
 					]
 				}
 			},
@@ -290,6 +253,109 @@
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
 						"     saveOrder: 1) ~> SinkADLGen2Staging"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/df_emp_master')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "ds_adlgen2_empmaster",
+								"type": "DatasetReference"
+							},
+							"name": "SourceFileEmpMaster"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "ds_sqldatabase_payroll_emp_md",
+								"type": "DatasetReference"
+							},
+							"name": "SinkSqlEmpMaster"
+						}
+					],
+					"transformations": [],
+					"scriptLines": [
+						"source(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> SourceFileEmpMaster",
+						"SourceFileEmpMaster sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          EmployeeID as string,",
+						"          LastName as string,",
+						"          FirstName as string",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> SinkSqlEmpMaster"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/df_title_master')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "ds_adlgen2_titlemaster",
+								"type": "DatasetReference"
+							},
+							"name": "SourceFileTitleMaster"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "ds_sqldatabase_payroll_title_md",
+								"type": "DatasetReference"
+							},
+							"name": "SinkSqlTitleMaster"
+						}
+					],
+					"transformations": [],
+					"scriptLines": [
+						"source(output(",
+						"          TitleCode as string,",
+						"          TitleDescription as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> SourceFileTitleMaster",
+						"SourceFileTitleMaster sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          TitleCode as string,",
+						"          TitleDescription as string",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> SinkSqlTitleMaster"
 					]
 				}
 			},
@@ -552,6 +618,7 @@
 				"[concat(variables('factoryId'), '/dataflows/df_agency_master')]",
 				"[concat(variables('factoryId'), '/dataflows/df_emp_master')]",
 				"[concat(variables('factoryId'), '/dataflows/df_title_master')]",
+				"[concat(variables('factoryId'), '/dataflows/df_2021_payroll')]",
 				"[concat(variables('factoryId'), '/dataflows/df_dataflow_summary')]"
 			]
 		}
